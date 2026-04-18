@@ -9,8 +9,8 @@
         {
             "type": "msedge",
             "request": "launch",
-            "name": "Open Carilila Landing.html",
-            "file": "c:\\Users\\sebal\\OneDrive\\Documentos\\claude\\Vinos\\Carilila Landing.html"
+            "name": "Open index.html",
+            "file": "c:\\Users\\sebal\\OneDrive\\Documentos\\claude\\Vinos\\index.html"
         }
     ]
 }
