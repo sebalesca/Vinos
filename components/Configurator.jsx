@@ -1,20 +1,3 @@
-// Configurador simple: elegir vino, copa, grabado + preview en vivo
-
-const WINES = [
-  { id: 'malbec', name: 'Malbec Reserva', region: 'Mendoza', year: 2023, color: '#5C1A1B', notes: 'Ciruela · cacao · roble' },
-  { id: 'cabernet', name: 'Cabernet Sauvignon', region: 'Uco Valley', year: 2022, color: '#451115', notes: 'Pimiento · casis · tabaco' },
-  { id: 'blend', name: 'Blend de autor', region: 'Mendoza', year: 2023, color: '#6B1F20', notes: 'Especias · mora · vainilla' },
-  { id: 'chardonnay', name: 'Chardonnay', region: 'Tupungato', year: 2024, color: '#C8A85A', notes: 'Manzana · cítrico · miel' },
-];
-
-const GLASSES = [
-  { id: 'cabernet', name: 'Cabernet', desc: 'Cuerpo amplio, tinto robusto' },
-  { id: 'burgundy', name: 'Borgoña', desc: 'Balón grande, aromático' },
-  { id: 'flute', name: 'Flauta', desc: 'Esbelta, para espumantes' },
-];
-
-const PRESETS = ['Para Sofía', 'Felices 10', '12 · 04 · 2026', 'Gracias, papá', 'Salud, amor & dinero'];
-
 function Configurator({ onChangeEngraving, engraving, setEngraving, wine, setWine, glass, setGlass }) {
   const selectedWine = WINES.find(w => w.id === wine) || WINES[0];
 
@@ -30,16 +13,10 @@ function Configurator({ onChangeEngraving, engraving, setEngraving, wine, setWin
         {/* Header */}
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 40, marginBottom: 64, alignItems: 'end' }}>
           <div>
-            <div className="mono" style={{ fontSize: 11, letterSpacing: '0.25em', color: '#5C1A1B', textTransform: 'uppercase', marginBottom: 16 }}>
-              ✶ Armá la tuya ahora
-            </div>
-            <h2 className="serif" style={{
-              fontSize: 'clamp(40px, 5vw, 68px)', lineHeight: 1.02,
-              margin: 0, fontWeight: 500, letterSpacing: '-0.02em', color: '#2A2119',
-            }}>
-              Tres decisiones<br/>
-              <em style={{ color: '#5C1A1B' }}>y está lista.</em>
-            </h2>
+            <SectionHeader
+              eyebrow="✶ Armá la tuya ahora"
+              title={<>Tres decisiones<br/><em style={{ color: '#5C1A1B' }}>y está lista.</em></>}
+            />
           </div>
           <div style={{ color: '#4A3E32', fontSize: 15, lineHeight: 1.6, maxWidth: 460, justifySelf: 'end' }}>
             Probá combinaciones antes de pedir. La caja de la derecha se actualiza en tiempo real — grabado, vino y copas incluidos. <strong style={{ color: '#2A2119' }}>Cuando te guste, hacés click y listo.</strong>
@@ -147,7 +124,7 @@ function Configurator({ onChangeEngraving, engraving, setEngraving, wine, setWin
             }}>
               <div>
                 <div className="mono" style={{ fontSize: 10, letterSpacing: '0.2em', opacity: 0.7, textTransform: 'uppercase' }}>Total · envío incluido</div>
-                <div className="serif" style={{ fontSize: 34, fontWeight: 500, marginTop: 4 }}>USD 28<span style={{ fontSize: 16, opacity: 0.6 }}>,00</span></div>
+                <div className="serif" style={{ fontSize: 34, fontWeight: 500, marginTop: 4 }}>{PRICE.display}<span style={{ fontSize: 16, opacity: 0.6 }}>,00</span></div>
               </div>
               <button style={{
                 background: '#F4EADA', color: '#2A2119',

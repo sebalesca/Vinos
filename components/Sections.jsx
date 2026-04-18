@@ -1,35 +1,13 @@
-// Sections: Proceso, Galería, Historias, FAQ, CTA final, Footer
-// Copy reescrito en clave comercial: beneficios, urgencia, emoción, prueba social.
-
-const SECTION_PHOTOS = {
-  process: 'https://images.unsplash.com/photo-1569919659476-f0852f6834b7?w=800&q=80&auto=format&fit=crop',
-  gallery1: 'https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?w=800&q=80&auto=format&fit=crop',
-  gallery2: 'https://images.unsplash.com/photo-1547595628-c61a29f496f0?w=800&q=80&auto=format&fit=crop',
-  gallery3: 'https://images.unsplash.com/photo-1553361371-9b22f78e8b1d?w=800&q=80&auto=format&fit=crop',
-  gallery4: 'https://images.unsplash.com/photo-1506377247377-2a5b3b417ebb?w=800&q=80&auto=format&fit=crop',
-  cta: 'https://images.unsplash.com/photo-1516594915697-87eb3b1c14ea?w=1400&q=80&auto=format&fit=crop',
-};
-
 function ProcessSection() {
-  const steps = [
-    { n: '01', t: 'Armala en 3 minutos', d: 'Elegís vino, copas y tu frase. Vas viendo la caja en tiempo real. Sin vueltas, sin llamados.', icon: Icon.Wine },
-    { n: '02', t: 'La hacemos a mano', d: 'Cortamos la madera, grabamos con láser y seleccionamos el vino en nuestro taller en Mendoza.', icon: Icon.Engrave },
-    { n: '03', t: 'La envolvemos con amor', d: 'Papel kraft, sello de lacre y una tarjeta escrita a mano. Llega como un regalo de verdad, no como un paquete de Mercado Libre.', icon: Icon.Box },
-    { n: '04', t: 'Te hace quedar como un rey', d: '4-6 días hábiles a todo el país. Vos la entregás. Ellos nunca la olvidan.', icon: Icon.Truck },
-  ];
   return (
     <section id="proceso" style={{ padding: '120px 48px', background: '#F4EADA' }}>
       <div style={{ maxWidth: 1400, margin: '0 auto' }}>
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'end', marginBottom: 64, flexWrap: 'wrap', gap: 20 }}>
           <div>
-            <div className="mono" style={{ fontSize: 11, letterSpacing: '0.25em', color: '#5C1A1B', textTransform: 'uppercase', marginBottom: 16 }}>
-              ✶ Es más fácil de lo que pensás
-            </div>
-            <h2 className="serif" style={{ fontSize: 'clamp(40px, 5vw, 68px)', margin: 0, fontWeight: 500, lineHeight: 1.02, letterSpacing: '-0.02em' }}>
-              De tu idea<br/>
-              a su mano<br/>
-              <em style={{ color: '#5C1A1B' }}>en 4 pasos.</em>
-            </h2>
+            <SectionHeader
+              eyebrow="✶ Es más fácil de lo que pensás"
+              title={<>De tu idea<br/>a su mano<br/><em style={{ color: '#5C1A1B' }}>en 4 pasos.</em></>}
+            />
           </div>
           <div style={{ maxWidth: 380, color: '#4A3E32', fontSize: 16, lineHeight: 1.6 }}>
             Sin diseñadores gráficos, sin cotizaciones por WhatsApp, sin sorpresas feas.
@@ -38,8 +16,8 @@ function ProcessSection() {
         </div>
 
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 0, borderTop: '1px solid #B8895A' }}>
-          {steps.map((s, i) => {
-            const IconCmp = s.icon;
+          {PROCESS_STEPS.map((s, i) => {
+            const IconCmp = Icon[s.iconKey];
             return (
               <div key={s.n} style={{
                 padding: '36px 28px 36px 0',
@@ -62,26 +40,18 @@ function ProcessSection() {
 }
 
 function GallerySection() {
-  const boxes = [
-    { title: 'La Clásica', sub: 'Malbec Reserva · Cabernet', tag: '★ La más pedida', engraving: 'Felices 10 años', photo: 'gallery1', price: 'USD 28' },
-    { title: 'La Esencial', sub: 'Malbec · Borgoña', tag: 'Más accesible', engraving: 'M & L · 2026', photo: 'gallery2', price: 'USD 28' },
-    { title: 'La de Verano', sub: 'Chardonnay · Flautas', tag: 'Nuevo', engraving: 'Salud, Sofi', photo: 'gallery3', price: 'USD 32' },
-    { title: 'La de Autor', sub: 'Blend Premium · Cabernet', tag: 'Edición limitada', engraving: '¡30, al fin!', photo: 'gallery4', price: 'USD 38' },
-  ];
   return (
     <section id="galeria" style={{ padding: '120px 48px', background: '#FBF6EC' }}>
       <div style={{ maxWidth: 1400, margin: '0 auto' }}>
         <div style={{ marginBottom: 64 }}>
-          <div className="mono" style={{ fontSize: 11, letterSpacing: '0.25em', color: '#5C1A1B', textTransform: 'uppercase', marginBottom: 16 }}>
-            ✶ Elegí tu base favorita
-          </div>
-          <h2 className="serif" style={{ fontSize: 'clamp(40px, 5vw, 68px)', margin: 0, fontWeight: 500, lineHeight: 1.02, letterSpacing: '-0.02em' }}>
-            4 cajas. Todas personalizables. <em style={{ color: '#5C1A1B' }}>Ninguna igual.</em>
-          </h2>
+          <SectionHeader
+            eyebrow="✶ Elegí tu base favorita"
+            title={<>4 cajas. Todas personalizables. <em style={{ color: '#5C1A1B' }}>Ninguna igual.<br/></em></>}
+          />
         </div>
 
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 20 }}>
-          {boxes.map((b, i) => (
+          {GALLERY_BOXES.map((b, i) => (
             <div key={i} style={{
               background: '#F4EADA', border: '1px solid #E5D5BA',
               borderRadius: 4, overflow: 'hidden',
@@ -131,39 +101,16 @@ function GallerySection() {
 }
 
 function StoriesSection() {
-  const stories = [
-    {
-      quote: 'La cara de mi viejo cuando leyó "Gracias por todo, pa" grabado en la caja — no tiene precio. El Malbec se lo tomó esa misma noche con mi vieja. Le saqué foto a la caja. La mejor plata que gasté en años.',
-      name: 'Martín G.',
-      city: 'Buenos Aires',
-      occasion: 'Día del padre',
-    },
-    {
-      quote: 'La pedí para nuestros 10 años. Cuando ella abrió y vio nuestras iniciales y la fecha grabada, lloró. Literalmente lloró. Nunca me habían funcionado tan bien USD 28. La caja sigue en el living.',
-      name: 'Joaquín R.',
-      city: 'Córdoba',
-      occasion: 'Aniversario',
-    },
-    {
-      quote: 'Mi jefa me regaló una cuando me fui del laburo. Dos años después todavía la tengo en casa como decoración. Es de esos regalos que te dan y te acordás para siempre de quien te lo dio.',
-      name: 'Ana P.',
-      city: 'Rosario',
-      occasion: 'Despedida',
-    },
-  ];
   return (
     <section id="historias" style={{ padding: '120px 48px', background: '#2A2119', color: '#F4EADA' }}>
       <div style={{ maxWidth: 1400, margin: '0 auto' }}>
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 2fr', gap: 60, marginBottom: 64, alignItems: 'end' }}>
           <div>
-            <div className="mono" style={{ fontSize: 11, letterSpacing: '0.25em', color: '#B08851', textTransform: 'uppercase', marginBottom: 16 }}>
-              ✶ No nos creas a nosotros
-            </div>
-            <h2 className="serif" style={{ fontSize: 'clamp(40px, 4.5vw, 64px)', margin: 0, fontWeight: 500, lineHeight: 1.02, letterSpacing: '-0.02em' }}>
-              Creele<br/>
-              <em style={{ color: '#D4A574' }}>a los que</em><br/>
-              ya regalaron.
-            </h2>
+            <SectionHeader
+              eyebrow="✶ No nos creas a nosotros"
+              eyebrowColor="#B08851"
+              title={<>Creele<br/><em style={{ color: '#D4A574' }}>a los que</em><br/>ya regalaron.</>}
+            />
           </div>
           <div style={{ display: 'flex', gap: 32, alignSelf: 'end' }}>
             <div>
@@ -191,7 +138,7 @@ function StoriesSection() {
         </div>
 
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 24 }}>
-          {stories.map((s, i) => (
+          {STORIES.map((s, i) => (
             <div key={i} style={{
               padding: 32, background: 'rgba(244,234,218,0.04)',
               border: '1px solid rgba(244,234,218,0.15)',
@@ -224,27 +171,18 @@ function StoriesSection() {
 
 function FAQSection() {
   const [open, setOpen] = React.useState(0);
-  const faqs = [
-    { q: '¿Y si no le gusta?', a: 'Imposible. Pero si llega roto o con algún problema, te reponemos la caja completa sin cargo. Garantía total.' },
-    { q: '¿En cuánto tiempo llega?', a: '4-6 días hábiles de producción + 2-4 de envío según ciudad. Si necesitás algo urgente (cumple mañana, etc.) escribinos por WhatsApp — casi siempre lo resolvemos.' },
-    { q: '¿Qué puedo grabar?', a: 'Lo que quieras, hasta 22 caracteres. Nombre, fecha, iniciales, una frase corta. Si es para empresa también grabamos logos. El grabado es láser real — permanente, no se borra.' },
-    { q: '¿Las copas son frágiles?', a: 'Cristal de verdad, no plástico barato. Van con espuma anti-golpe y doble embalaje. En 1.200 envíos no se nos rompió ninguna. De verdad.' },
-    { q: '¿Puedo elegir otro vino?', a: 'Tenemos 4 vinos mendocinos seleccionados. Si querés una marca específica, escribinos antes — generalmente la conseguimos sin costo extra.' },
-    { q: '¿Hacen regalos corporativos?', a: 'Sí, desde 10 cajas con el logo de tu empresa grabado. Descuento por volumen. Escribinos a hola@carilila.com.ar y te pasamos presupuesto en el día.' },
-  ];
   return (
     <section style={{ padding: '120px 48px', background: '#F4EADA' }}>
       <div style={{ maxWidth: 960, margin: '0 auto' }}>
         <div style={{ textAlign: 'center', marginBottom: 64 }}>
-          <div className="mono" style={{ fontSize: 11, letterSpacing: '0.25em', color: '#5C1A1B', textTransform: 'uppercase', marginBottom: 16 }}>
-            ✶ Antes de que preguntes
-          </div>
-          <h2 className="serif" style={{ fontSize: 'clamp(40px, 5vw, 64px)', margin: 0, fontWeight: 500, lineHeight: 1.02, letterSpacing: '-0.02em' }}>
-            Las dudas que todos tienen <em style={{ color: '#5C1A1B' }}>(y sus respuestas).</em>
-          </h2>
+          <SectionHeader
+            align="center"
+            eyebrow="✶ Antes de que preguntes"
+            title={<>Las dudas que todos tienen <em style={{ color: '#5C1A1B' }}>(y sus respuestas).</em></>}
+          />
         </div>
         <div style={{ borderTop: '1px solid #B8895A' }}>
-          {faqs.map((f, i) => (
+          {FAQS.map((f, i) => (
             <div key={i} style={{ borderBottom: '1px solid #D9C9AE' }}>
               <button onClick={() => setOpen(open === i ? -1 : i)} style={{
                 width: '100%', padding: '28px 0', display: 'flex', justifyContent: 'space-between', alignItems: 'center',

@@ -1,16 +1,3 @@
-// Hero photo component: uses real Unsplash images of wine gift boxes.
-// Keeps an engraving overlay card so personalization message still reads.
-
-const HERO_PHOTOS = {
-  // Curated royalty-free Unsplash photos of wine + wooden box + glasses scenes
-  main: 'https://images.unsplash.com/photo-1584916201218-f4242ceb4809?w=1200&q=80&auto=format&fit=crop',
-  lifestyle: 'https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?w=1200&q=80&auto=format&fit=crop',
-  detail: 'https://images.unsplash.com/photo-1547595628-c61a29f496f0?w=1200&q=80&auto=format&fit=crop',
-  couple: 'https://images.unsplash.com/photo-1516594915697-87eb3b1c14ea?w=1200&q=80&auto=format&fit=crop',
-  darkMoody: 'https://images.unsplash.com/photo-1553361371-9b22f78e8b1d?w=1200&q=80&auto=format&fit=crop',
-  gift: 'https://images.unsplash.com/photo-1506377247377-2a5b3b417ebb?w=1200&q=80&auto=format&fit=crop',
-};
-
 function BoxIllustration({ engraving = "Para Sofía", glassStyle = "cabernet", wineColor = "#5C1A1B", compact = false, photo = 'main' }) {
   const src = HERO_PHOTOS[photo] || HERO_PHOTOS.main;
   return (
@@ -49,4 +36,3 @@ function BoxIllustration({ engraving = "Para Sofía", glassStyle = "cabernet", w
 }
 
 window.BoxIllustration = BoxIllustration;
-window.HERO_PHOTOS = HERO_PHOTOS;
